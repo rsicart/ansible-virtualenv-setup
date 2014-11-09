@@ -1,0 +1,13 @@
+---
+
+user:
+  username: "{{ ansible_ssh_user }}"
+
+virtualenv:
+  path: "~{{ ansible_ssh_user }}/.virtualenvs"
+  name: "sample-virtualenv"
+  binary: /usr/bin/python3  # absolute path to python binary
+  packages:
+    - django
+    - uwsgi
+    - PyMySql
