@@ -2,15 +2,19 @@
 
 - name: Create virtualenv folder
   file: dest={{ virtualenv.path }} state=directory owner={{ user.username }} group={{ user.username }}
+  tags: [virtualenv]
 
 - name: Check if virtualenv exists already
   stat: path={{ virtualenv.path }}/{{ virtualenv.name }}/bin/activate
   register: venv
+  tags: [virtualenv]
 
 - name: Create virtual environment
   shell: virtualenv --no-site-packages --distribute -p {{ virtualenv.binary }} {{ virtualenv.path }}/{{ virtualenv.name }}
   when: venv.stat.exists == False
+  tags: [virtualenv]
 
 - name: Install packages
   pip: name={{ item }} virtualenv={{ virtualenv.path }}/{{ virtualenv.name }} state=latest
   with_items: virtualenv.packages
+  tags: [virtualenv]
