@@ -1,10 +1,9 @@
 ---
 
-user:
-  username: "{{ ansible_ssh_user }}"
-
 virtualenv:
   path: "~{{ ansible_ssh_user }}/.virtualenvs"
+  user: "{{ ansible_ssh_user }}"
+  group: "{{ ansible_ssh_user }}"
   name: "sample-virtualenv"
   binary: /usr/bin/python3  # absolute path to python binary
   packages:

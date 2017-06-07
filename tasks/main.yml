@@ -1,7 +1,7 @@
 ---
 
 - name: Create virtualenv folder
-  file: dest={{ virtualenv.path }} state=directory owner={{ user.username }} group={{ user.username }}
+  file: dest={{ virtualenv.path }} state=directory owner={{ virtualenv.user }} group={{ virtualenv.group }}
   tags: [virtualenv]
 
 - name: Check if virtualenv exists already
